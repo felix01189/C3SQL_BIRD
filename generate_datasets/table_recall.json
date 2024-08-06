@@ -1,0 +1,896 @@
+[
+  {
+    "db_id": "concert_singer",
+    "question": "How many singers do we have?",
+    "db_schema": [
+      {
+        "table_name_original": "concert",
+        "table_name": "concert",
+        "column_names": [
+          "concert id",
+          "concert name",
+          "theme",
+          "stadium id",
+          "year"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "concert_name",
+          "theme",
+          "stadium_id",
+          "year"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "stadium",
+        "table_name": "stadium",
+        "column_names": [
+          "stadium id",
+          "location",
+          "name",
+          "capacity",
+          "highest",
+          "lowest",
+          "average"
+        ],
+        "column_names_original": [
+          "stadium_id",
+          "location",
+          "name",
+          "capacity",
+          "highest",
+          "lowest",
+          "average"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "number",
+          "number",
+          "number",
+          "number"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    ],
+    "fk": [
+      "concert.stadium_id = stadium.stadium_id"
+    ]
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "What is the total number of singers?",
+    "db_schema": [
+      {
+        "table_name_original": "concert",
+        "table_name": "concert",
+        "column_names": [
+          "concert id",
+          "concert name",
+          "theme",
+          "stadium id",
+          "year"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "concert_name",
+          "theme",
+          "stadium_id",
+          "year"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "stadium",
+        "table_name": "stadium",
+        "column_names": [
+          "stadium id",
+          "location",
+          "name",
+          "capacity",
+          "highest",
+          "lowest",
+          "average"
+        ],
+        "column_names_original": [
+          "stadium_id",
+          "location",
+          "name",
+          "capacity",
+          "highest",
+          "lowest",
+          "average"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "number",
+          "number",
+          "number",
+          "number"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    ],
+    "fk": [
+      "concert.stadium_id = stadium.stadium_id"
+    ]
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "Show name, country, age for all singers ordered by age from the oldest to the youngest.",
+    "db_schema": [
+      {
+        "table_name_original": "singer",
+        "table_name": "singer",
+        "column_names": [
+          "singer id",
+          "name",
+          "country",
+          "song name",
+          "song release year",
+          "age",
+          "is male"
+        ],
+        "column_names_original": [
+          "singer_id",
+          "name",
+          "country",
+          "song_name",
+          "song_release_year",
+          "age",
+          "is_male"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text",
+          "number",
+          "others"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "stadium",
+        "table_name": "stadium",
+        "column_names": [
+          "stadium id",
+          "location",
+          "name",
+          "capacity",
+          "highest",
+          "lowest",
+          "average"
+        ],
+        "column_names_original": [
+          "stadium_id",
+          "location",
+          "name",
+          "capacity",
+          "highest",
+          "lowest",
+          "average"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "number",
+          "number",
+          "number",
+          "number"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "concert",
+        "table_name": "concert",
+        "column_names": [
+          "concert id",
+          "concert name",
+          "theme",
+          "stadium id",
+          "year"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "concert_name",
+          "theme",
+          "stadium_id",
+          "year"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "singer_in_concert",
+        "table_name": "singer in concert",
+        "column_names": [
+          "concert id",
+          "singer id"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "singer_id"
+        ],
+        "column_types": [
+          "number",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          []
+        ]
+      }
+    ],
+    "fk": [
+      "concert.stadium_id = stadium.stadium_id",
+      "singer_in_concert.singer_id = singer.singer_id",
+      "singer_in_concert.concert_id = concert.concert_id"
+    ]
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "What are the names, countries, and ages for every singer in descending order of age?",
+    "db_schema": [
+      {
+        "table_name_original": "singer",
+        "table_name": "singer",
+        "column_names": [
+          "singer id",
+          "name",
+          "country",
+          "song name",
+          "song release year",
+          "age",
+          "is male"
+        ],
+        "column_names_original": [
+          "singer_id",
+          "name",
+          "country",
+          "song_name",
+          "song_release_year",
+          "age",
+          "is_male"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text",
+          "number",
+          "others"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "singer_in_concert",
+        "table_name": "singer in concert",
+        "column_names": [
+          "concert id",
+          "singer id"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "singer_id"
+        ],
+        "column_types": [
+          "number",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "concert",
+        "table_name": "concert",
+        "column_names": [
+          "concert id",
+          "concert name",
+          "theme",
+          "stadium id",
+          "year"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "concert_name",
+          "theme",
+          "stadium_id",
+          "year"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "stadium",
+        "table_name": "stadium",
+        "column_names": [
+          "stadium id",
+          "location",
+          "name",
+          "capacity",
+          "highest",
+          "lowest",
+          "average"
+        ],
+        "column_names_original": [
+          "stadium_id",
+          "location",
+          "name",
+          "capacity",
+          "highest",
+          "lowest",
+          "average"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "number",
+          "number",
+          "number",
+          "number"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    ],
+    "fk": [
+      "concert.stadium_id = stadium.stadium_id",
+      "singer_in_concert.singer_id = singer.singer_id",
+      "singer_in_concert.concert_id = concert.concert_id"
+    ]
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "What is the average, minimum, and maximum age of all singers from France?",
+    "db_schema": [
+      {
+        "table_name_original": "singer",
+        "table_name": "singer",
+        "column_names": [
+          "singer id",
+          "name",
+          "country",
+          "song name",
+          "song release year",
+          "age",
+          "is male"
+        ],
+        "column_names_original": [
+          "singer_id",
+          "name",
+          "country",
+          "song_name",
+          "song_release_year",
+          "age",
+          "is_male"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text",
+          "number",
+          "others"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [
+            "France"
+          ],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "singer_in_concert",
+        "table_name": "singer in concert",
+        "column_names": [
+          "concert id",
+          "singer id"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "singer_id"
+        ],
+        "column_types": [
+          "number",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          []
+        ]
+      }
+    ],
+    "fk": [
+      "singer_in_concert.singer_id = singer.singer_id"
+    ]
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "What is the average, minimum, and maximum age for all French singers?",
+    "db_schema": [
+      {
+        "table_name_original": "singer",
+        "table_name": "singer",
+        "column_names": [
+          "singer id",
+          "name",
+          "country",
+          "song name",
+          "song release year",
+          "age",
+          "is male"
+        ],
+        "column_names_original": [
+          "singer_id",
+          "name",
+          "country",
+          "song_name",
+          "song_release_year",
+          "age",
+          "is_male"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text",
+          "number",
+          "others"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "singer_in_concert",
+        "table_name": "singer in concert",
+        "column_names": [
+          "concert id",
+          "singer id"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "singer_id"
+        ],
+        "column_types": [
+          "number",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "concert",
+        "table_name": "concert",
+        "column_names": [
+          "concert id",
+          "concert name",
+          "theme",
+          "stadium id",
+          "year"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "concert_name",
+          "theme",
+          "stadium_id",
+          "year"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "stadium",
+        "table_name": "stadium",
+        "column_names": [
+          "stadium id",
+          "location",
+          "name",
+          "capacity",
+          "highest",
+          "lowest",
+          "average"
+        ],
+        "column_names_original": [
+          "stadium_id",
+          "location",
+          "name",
+          "capacity",
+          "highest",
+          "lowest",
+          "average"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "number",
+          "number",
+          "number",
+          "number"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    ],
+    "fk": [
+      "concert.stadium_id = stadium.stadium_id",
+      "singer_in_concert.singer_id = singer.singer_id",
+      "singer_in_concert.concert_id = concert.concert_id"
+    ]
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "Show the name and the release year of the song by the youngest singer.",
+    "db_schema": [
+      {
+        "table_name_original": "singer",
+        "table_name": "singer",
+        "column_names": [
+          "singer id",
+          "name",
+          "country",
+          "song name",
+          "song release year",
+          "age",
+          "is male"
+        ],
+        "column_names_original": [
+          "singer_id",
+          "name",
+          "country",
+          "song_name",
+          "song_release_year",
+          "age",
+          "is_male"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text",
+          "number",
+          "others"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "What are the names and release years for all the songs of the youngest singer?",
+    "db_schema": [
+      {
+        "table_name_original": "singer",
+        "table_name": "singer",
+        "column_names": [
+          "singer id",
+          "name",
+          "country",
+          "song name",
+          "song release year",
+          "age",
+          "is male"
+        ],
+        "column_names_original": [
+          "singer_id",
+          "name",
+          "country",
+          "song_name",
+          "song_release_year",
+          "age",
+          "is_male"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text",
+          "number",
+          "others"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "What are all distinct countries where singers above age 20 are from?",
+    "db_schema": [
+      {
+        "table_name_original": "singer",
+        "table_name": "singer",
+        "column_names": [
+          "singer id",
+          "name",
+          "country",
+          "song name",
+          "song release year",
+          "age",
+          "is male"
+        ],
+        "column_names_original": [
+          "singer_id",
+          "name",
+          "country",
+          "song_name",
+          "song_release_year",
+          "age",
+          "is_male"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text",
+          "number",
+          "others"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "singer_in_concert",
+        "table_name": "singer in concert",
+        "column_names": [
+          "concert id",
+          "singer id"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "singer_id"
+        ],
+        "column_types": [
+          "number",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          []
+        ]
+      }
+    ],
+    "fk": [
+      "singer_in_concert.singer_id = singer.singer_id"
+    ]
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "What are  the different countries with singers above age 20?",
+    "db_schema": [
+      {
+        "table_name_original": "singer",
+        "table_name": "singer",
+        "column_names": [
+          "singer id",
+          "name",
+          "country",
+          "song name",
+          "song release year",
+          "age",
+          "is male"
+        ],
+        "column_names_original": [
+          "singer_id",
+          "name",
+          "country",
+          "song_name",
+          "song_release_year",
+          "age",
+          "is_male"
+        ],
+        "column_types": [
+          "number",
+          "text",
+          "text",
+          "text",
+          "text",
+          "number",
+          "others"
+        ],
+        "db_contents": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "table_name_original": "singer_in_concert",
+        "table_name": "singer in concert",
+        "column_names": [
+          "concert id",
+          "singer id"
+        ],
+        "column_names_original": [
+          "concert_id",
+          "singer_id"
+        ],
+        "column_types": [
+          "number",
+          "text"
+        ],
+        "db_contents": [
+          [],
+          []
+        ]
+      }
+    ],
+    "fk": [
+      "singer_in_concert.singer_id = singer.singer_id"
+    ]
+  }
+]

@@ -12,6 +12,7 @@ dataset_path=$2
 device="0"
 db_path=$3
 processed_dataset_path=$4
+openai_key=$5
 # preprocess test set
 echo "preprocessing..."
 python src/preprocessing.py \
@@ -27,12 +28,14 @@ echo "recall tables..."
 python src/table_recall.py \
     --input_dataset_path "./generate_datasets/preprocessed_data.json" \
     --output_recalled_tables_path "./generate_datasets/table_recall.json" \
+    --openai_key $openai_key
 
 # recall columns
 echo "recall columns..."
 python src/column_recall.py \
     --input_recalled_tables_path "./generate_datasets/table_recall.json" \
     --output_recalled_columns_path "./generate_datasets/column_recall.json" \
+    --openai_key $openai_key
 
 # generate prompt
 echo "generate prompt..."
