@@ -9,9 +9,6 @@ import sqlite3
 from get_selfconsistent_output import get_sqls
 from tqdm import tqdm
 
-# add your openai api key
-openai.api_key = "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"
-
 chat_prompt = [
     {
         "role": "system",
@@ -51,6 +48,7 @@ def parse_option():
                         help="Size of self-consistent set")
     parser.add_argument("--output_dataset_path", type=str)
     parser.add_argument("--db_dir", type=str, default="./data/database")
+    parser.add_argument("--openai_key", type=str)
 
     opt = parser.parse_args()
 
@@ -115,6 +113,7 @@ def is_valid(sql, db_path):
 
 if __name__ == '__main__':
     opt = parse_option()
+    openai.api_key = opt.openai_key
     print(opt)
     with open(opt.input_dataset_path) as f:
         data = json.load(f)

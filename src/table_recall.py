@@ -5,10 +5,6 @@ import time
 from tqdm import tqdm
 from collections import Counter
 
-# add your openai api key
-openai.api_key = "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"
-
-
 def parse_option():
     parser = argparse.ArgumentParser("command line arguments for recall tables")
     parser.add_argument("--input_dataset_path", type=str, default='../generate_datasets/preprocessed_test.json')
@@ -16,6 +12,7 @@ def parse_option():
     parser.add_argument("--n", type=int, default=10,
                         help="Size of self-consistent set")
     parser.add_argument("--output_recalled_tables_path", type=str)
+    parser.add_argument("--openai_key",type=str)
 
     opt = parser.parse_args()
 
@@ -113,6 +110,7 @@ instruction = """Given the database schema and question, perform the following a
 
 if __name__ == "__main__":
     opt = parse_option()
+    openai.api_key = opt.openai_key
     print(opt)
     with open(opt.input_dataset_path) as f:
         data_all = json.load(f)

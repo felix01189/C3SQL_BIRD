@@ -3,48 +3,25 @@
     "db_id": "concert_singer",
     "question": "How many singers do we have?",
     "schema": {
-      "singer": [
-        "singer_id",
-        "name",
-        "country",
-        "is_male",
-        "song_name"
-      ],
-      "singer_in_concert": [
-        "singer_id",
-        "concert_id"
-      ],
       "concert": [
-        "concert_id",
+        "stadium_id",
         "concert_name",
         "theme",
-        "stadium_id",
-        "year"
+        "year",
+        "concert_id"
       ],
       "stadium": [
+        "capacity",
+        "name",
         "stadium_id",
         "location",
-        "name",
-        "capacity"
+        "highest"
       ]
     },
     "fk": [
-      "concert.stadium_id = stadium.stadium_id",
-      "singer_in_concert.singer_id = singer.singer_id",
-      "singer_in_concert.concert_id = concert.concert_id"
+      "concert.stadium_id = stadium.stadium_id"
     ],
     "db_contents": {
-      "singer": [
-        [],
-        [],
-        [],
-        [],
-        []
-      ],
-      "singer_in_concert": [
-        [],
-        []
-      ],
       "concert": [
         [],
         [],
@@ -56,53 +33,35 @@
         [],
         [],
         [],
+        [],
         []
       ]
     },
-    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( singer_id, name, country, is_male, song_name )\n# singer_in_concert ( singer_id, concert_id )\n# concert ( concert_id, concert_name, theme, stadium_id, year )\n# stadium ( stadium_id, location, name, capacity )\n# concert.stadium_id = stadium.stadium_id\n# singer_in_concert.singer_id = singer.singer_id\n# singer_in_concert.concert_id = concert.concert_id\n#\n### How many singers do we have?\nSELECT"
+    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# concert ( stadium_id, concert_name, theme, year, concert_id )\n# stadium ( capacity, name, stadium_id, location, highest )\n# concert.stadium_id = stadium.stadium_id\n#\n### How many singers do we have?\nSELECT"
   },
   {
     "db_id": "concert_singer",
     "question": "What is the total number of singers?",
     "schema": {
-      "singer": [
-        "singer_id",
-        "name",
-        "age",
-        "is_male",
-        "country"
-      ],
       "concert": [
-        "concert_id",
-        "year",
         "stadium_id",
+        "concert_name",
         "theme",
-        "concert_name"
-      ],
-      "singer_in_concert": [
         "concert_id",
-        "singer_id"
+        "year"
       ],
       "stadium": [
         "stadium_id",
+        "capacity",
         "location",
         "name",
-        "capacity"
+        "highest"
       ]
     },
     "fk": [
-      "concert.stadium_id = stadium.stadium_id",
-      "singer_in_concert.singer_id = singer.singer_id",
-      "singer_in_concert.concert_id = concert.concert_id"
+      "concert.stadium_id = stadium.stadium_id"
     ],
     "db_contents": {
-      "singer": [
-        [],
-        [],
-        [],
-        [],
-        []
-      ],
       "concert": [
         [],
         [],
@@ -110,42 +69,39 @@
         [],
         []
       ],
-      "singer_in_concert": [
-        [],
-        []
-      ],
       "stadium": [
+        [],
         [],
         [],
         [],
         []
       ]
     },
-    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( singer_id, name, age, is_male, country )\n# concert ( concert_id, year, stadium_id, theme, concert_name )\n# singer_in_concert ( concert_id, singer_id )\n# stadium ( stadium_id, location, name, capacity )\n# concert.stadium_id = stadium.stadium_id\n# singer_in_concert.singer_id = singer.singer_id\n# singer_in_concert.concert_id = concert.concert_id\n#\n### What is the total number of singers?\nSELECT"
+    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# concert ( stadium_id, concert_name, theme, concert_id, year )\n# stadium ( stadium_id, capacity, location, name, highest )\n# concert.stadium_id = stadium.stadium_id\n#\n### What is the total number of singers?\nSELECT"
   },
   {
     "db_id": "concert_singer",
     "question": "Show name, country, age for all singers ordered by age from the oldest to the youngest.",
     "schema": {
       "singer": [
+        "age",
         "name",
         "country",
-        "age",
-        "singer_id",
-        "is_male"
+        "is_male",
+        "singer_id"
       ],
       "stadium": [
         "name",
         "location",
         "capacity",
-        "stadium_id",
-        "highest"
+        "highest",
+        "stadium_id"
       ],
       "concert": [
-        "theme",
-        "year",
         "concert_name",
+        "theme",
         "stadium_id",
+        "year",
         "concert_id"
       ],
       "singer_in_concert": [
@@ -185,7 +141,7 @@
         []
       ]
     },
-    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( name, country, age, singer_id, is_male )\n# stadium ( name, location, capacity, stadium_id, highest )\n# concert ( theme, year, concert_name, stadium_id, concert_id )\n# singer_in_concert ( concert_id, singer_id )\n# concert.stadium_id = stadium.stadium_id\n# singer_in_concert.singer_id = singer.singer_id\n# singer_in_concert.concert_id = concert.concert_id\n#\n### Show name, country, age for all singers ordered by age from the oldest to the youngest.\nSELECT"
+    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( age, name, country, is_male, singer_id )\n# stadium ( name, location, capacity, highest, stadium_id )\n# concert ( concert_name, theme, stadium_id, year, concert_id )\n# singer_in_concert ( concert_id, singer_id )\n# concert.stadium_id = stadium.stadium_id\n# singer_in_concert.singer_id = singer.singer_id\n# singer_in_concert.concert_id = concert.concert_id\n#\n### Show name, country, age for all singers ordered by age from the oldest to the youngest.\nSELECT"
   },
   {
     "db_id": "concert_singer",
@@ -202,19 +158,17 @@
         "singer_id",
         "concert_id"
       ],
-      "stadium": [
-        "location",
-        "name",
-        "capacity",
-        "stadium_id",
-        "highest"
-      ],
       "concert": [
+        "concert_id",
         "concert_name",
         "theme",
+        "stadium_id"
+      ],
+      "stadium": [
         "stadium_id",
-        "concert_id",
-        "year"
+        "location",
+        "name",
+        "capacity"
       ]
     },
     "fk": [
@@ -234,213 +188,29 @@
         [],
         []
       ],
-      "stadium": [
-        [],
+      "concert": [
         [],
         [],
         [],
         []
       ],
-      "concert": [
-        [],
+      "stadium": [
         [],
         [],
         [],
         []
       ]
     },
-    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( age, name, country, singer_id, is_male )\n# singer_in_concert ( singer_id, concert_id )\n# stadium ( location, name, capacity, stadium_id, highest )\n# concert ( concert_name, theme, stadium_id, concert_id, year )\n# concert.stadium_id = stadium.stadium_id\n# singer_in_concert.singer_id = singer.singer_id\n# singer_in_concert.concert_id = concert.concert_id\n#\n### What are the names, countries, and ages for every singer in descending order of age?\nSELECT"
+    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( age, name, country, singer_id, is_male )\n# singer_in_concert ( singer_id, concert_id )\n# concert ( concert_id, concert_name, theme, stadium_id )\n# stadium ( stadium_id, location, name, capacity )\n# concert.stadium_id = stadium.stadium_id\n# singer_in_concert.singer_id = singer.singer_id\n# singer_in_concert.concert_id = concert.concert_id\n#\n### What are the names, countries, and ages for every singer in descending order of age?\nSELECT"
   },
   {
     "db_id": "concert_singer",
     "question": "What is the average, minimum, and maximum age of all singers from France?",
     "schema": {
       "singer": [
+        "name",
         "country",
         "age",
-        "singer_id",
-        "name"
-      ],
-      "singer_in_concert": [
-        "singer_id",
-        "concert_id"
-      ]
-    },
-    "fk": [
-      "singer_in_concert.singer_id = singer.singer_id"
-    ],
-    "db_contents": {
-      "singer": [
-        [
-          "France"
-        ],
-        [],
-        [],
-        []
-      ],
-      "singer_in_concert": [
-        [],
-        []
-      ]
-    },
-    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( country(\"France\"), age, singer_id, name )\n# singer_in_concert ( singer_id, concert_id )\n# singer_in_concert.singer_id = singer.singer_id\n#\n### What is the average, minimum, and maximum age of all singers from France?\nSELECT"
-  },
-  {
-    "db_id": "concert_singer",
-    "question": "What is the average, minimum, and maximum age for all French singers?",
-    "schema": {
-      "singer": [
-        "age",
-        "country",
-        "name",
-        "is_male",
-        "singer_id"
-      ],
-      "singer_in_concert": [
-        "concert_id",
-        "singer_id"
-      ],
-      "concert": [
-        "concert_id",
-        "stadium_id",
-        "year",
-        "concert_name",
-        "theme"
-      ],
-      "stadium": [
-        "stadium_id",
-        "location",
-        "name",
-        "capacity"
-      ]
-    },
-    "fk": [
-      "concert.stadium_id = stadium.stadium_id",
-      "singer_in_concert.singer_id = singer.singer_id",
-      "singer_in_concert.concert_id = concert.concert_id"
-    ],
-    "db_contents": {
-      "singer": [
-        [],
-        [],
-        [],
-        [],
-        []
-      ],
-      "singer_in_concert": [
-        [],
-        []
-      ],
-      "concert": [
-        [],
-        [],
-        [],
-        [],
-        []
-      ],
-      "stadium": [
-        [],
-        [],
-        [],
-        []
-      ]
-    },
-    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( age, country, name, is_male, singer_id )\n# singer_in_concert ( concert_id, singer_id )\n# concert ( concert_id, stadium_id, year, concert_name, theme )\n# stadium ( stadium_id, location, name, capacity )\n# concert.stadium_id = stadium.stadium_id\n# singer_in_concert.singer_id = singer.singer_id\n# singer_in_concert.concert_id = concert.concert_id\n#\n### What is the average, minimum, and maximum age for all French singers?\nSELECT"
-  },
-  {
-    "db_id": "concert_singer",
-    "question": "Show the name and the release year of the song by the youngest singer.",
-    "schema": {
-      "singer": [
-        "name",
-        "age",
-        "song_name",
-        "song_release_year",
-        "singer_id"
-      ],
-      "concert": [
-        "concert_id",
-        "stadium_id",
-        "year",
-        "concert_name",
-        "theme"
-      ],
-      "singer_in_concert": [
-        "singer_id",
-        "concert_id"
-      ],
-      "stadium": [
-        "stadium_id",
-        "location",
-        "name",
-        "capacity"
-      ]
-    },
-    "fk": [
-      "concert.stadium_id = stadium.stadium_id",
-      "singer_in_concert.singer_id = singer.singer_id",
-      "singer_in_concert.concert_id = concert.concert_id"
-    ],
-    "db_contents": {
-      "singer": [
-        [],
-        [],
-        [],
-        [],
-        []
-      ],
-      "concert": [
-        [],
-        [],
-        [],
-        [],
-        []
-      ],
-      "singer_in_concert": [
-        [],
-        []
-      ],
-      "stadium": [
-        [],
-        [],
-        [],
-        []
-      ]
-    },
-    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( name, age, song_name, song_release_year, singer_id )\n# concert ( concert_id, stadium_id, year, concert_name, theme )\n# singer_in_concert ( singer_id, concert_id )\n# stadium ( stadium_id, location, name, capacity )\n# concert.stadium_id = stadium.stadium_id\n# singer_in_concert.singer_id = singer.singer_id\n# singer_in_concert.concert_id = concert.concert_id\n#\n### Show the name and the release year of the song by the youngest singer.\nSELECT"
-  },
-  {
-    "db_id": "concert_singer",
-    "question": "What are the names and release years for all the songs of the youngest singer?",
-    "schema": {
-      "singer": [
-        "age",
-        "name",
-        "song_release_year",
-        "singer_id",
-        "song_name"
-      ]
-    },
-    "fk": [],
-    "db_contents": {
-      "singer": [
-        [],
-        [],
-        [],
-        [],
-        []
-      ]
-    },
-    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( age, name, song_release_year, singer_id, song_name )\n#\n### What are the names and release years for all the songs of the youngest singer?\nSELECT"
-  },
-  {
-    "db_id": "concert_singer",
-    "question": "What are all distinct countries where singers above age 20 are from?",
-    "schema": {
-      "singer": [
-        "age",
-        "country",
-        "name",
         "singer_id",
         "is_male"
       ],
@@ -455,7 +225,9 @@
     "db_contents": {
       "singer": [
         [],
-        [],
+        [
+          "France"
+        ],
         [],
         [],
         []
@@ -465,17 +237,17 @@
         []
       ]
     },
-    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( age, country, name, singer_id, is_male )\n# singer_in_concert ( singer_id, concert_id )\n# singer_in_concert.singer_id = singer.singer_id\n#\n### What are all distinct countries where singers above age 20 are from?\nSELECT"
+    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( name, country(\"France\"), age, singer_id, is_male )\n# singer_in_concert ( singer_id, concert_id )\n# singer_in_concert.singer_id = singer.singer_id\n#\n### What is the average, minimum, and maximum age of all singers from France?\nSELECT"
   },
   {
     "db_id": "concert_singer",
-    "question": "What are  the different countries with singers above age 20?",
+    "question": "What is the average, minimum, and maximum age for all French singers?",
     "schema": {
       "singer": [
-        "age",
         "country",
-        "name",
+        "age",
         "is_male",
+        "name",
         "singer_id"
       ],
       "singer_in_concert": [
@@ -483,18 +255,17 @@
         "concert_id"
       ],
       "concert": [
-        "year",
         "stadium_id",
-        "concert_name",
         "concert_id",
-        "theme"
+        "concert_name",
+        "theme",
+        "year"
       ],
       "stadium": [
         "location",
+        "name",
         "capacity",
         "highest",
-        "name",
-        "lowest",
         "stadium_id"
       ]
     },
@@ -527,10 +298,123 @@
         [],
         [],
         [],
+        []
+      ]
+    },
+    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( country, age, is_male, name, singer_id )\n# singer_in_concert ( singer_id, concert_id )\n# concert ( stadium_id, concert_id, concert_name, theme, year )\n# stadium ( location, name, capacity, highest, stadium_id )\n# concert.stadium_id = stadium.stadium_id\n# singer_in_concert.singer_id = singer.singer_id\n# singer_in_concert.concert_id = concert.concert_id\n#\n### What is the average, minimum, and maximum age for all French singers?\nSELECT"
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "Show the name and the release year of the song by the youngest singer.",
+    "schema": {
+      "singer": [
+        "age",
+        "name",
+        "song_release_year",
+        "singer_id",
+        "song_name"
+      ]
+    },
+    "fk": [],
+    "db_contents": {
+      "singer": [
+        [],
+        [],
+        [],
         [],
         []
       ]
     },
-    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( age, country, name, is_male, singer_id )\n# singer_in_concert ( singer_id, concert_id )\n# concert ( year, stadium_id, concert_name, concert_id, theme )\n# stadium ( location, capacity, highest, name, lowest, stadium_id )\n# concert.stadium_id = stadium.stadium_id\n# singer_in_concert.singer_id = singer.singer_id\n# singer_in_concert.concert_id = concert.concert_id\n#\n### What are  the different countries with singers above age 20?\nSELECT"
+    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( age, name, song_release_year, singer_id, song_name )\n#\n### Show the name and the release year of the song by the youngest singer.\nSELECT"
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "What are the names and release years for all the songs of the youngest singer?",
+    "schema": {
+      "singer": [
+        "age",
+        "name",
+        "song_name",
+        "song_release_year",
+        "singer_id"
+      ]
+    },
+    "fk": [],
+    "db_contents": {
+      "singer": [
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( age, name, song_name, song_release_year, singer_id )\n#\n### What are the names and release years for all the songs of the youngest singer?\nSELECT"
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "What are all distinct countries where singers above age 20 are from?",
+    "schema": {
+      "singer": [
+        "age",
+        "country",
+        "singer_id",
+        "name"
+      ],
+      "singer_in_concert": [
+        "singer_id",
+        "concert_id"
+      ]
+    },
+    "fk": [
+      "singer_in_concert.singer_id = singer.singer_id"
+    ],
+    "db_contents": {
+      "singer": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "singer_in_concert": [
+        [],
+        []
+      ]
+    },
+    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( age, country, singer_id, name )\n# singer_in_concert ( singer_id, concert_id )\n# singer_in_concert.singer_id = singer.singer_id\n#\n### What are all distinct countries where singers above age 20 are from?\nSELECT"
+  },
+  {
+    "db_id": "concert_singer",
+    "question": "What are  the different countries with singers above age 20?",
+    "schema": {
+      "singer": [
+        "country",
+        "age",
+        "name",
+        "is_male",
+        "singer_id"
+      ],
+      "singer_in_concert": [
+        "singer_id",
+        "concert_id"
+      ]
+    },
+    "fk": [
+      "singer_in_concert.singer_id = singer.singer_id"
+    ],
+    "db_contents": {
+      "singer": [
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "singer_in_concert": [
+        [],
+        []
+      ]
+    },
+    "input_sequence": "### Complete sqlite SQL query only and with no explanation, and do not select extra columns that are not explicitly requested in the query. \n ### Sqlite SQL tables, with their properties: \n#\n# singer ( country, age, name, is_male, singer_id )\n# singer_in_concert ( singer_id, concert_id )\n# singer_in_concert.singer_id = singer.singer_id\n#\n### What are  the different countries with singers above age 20?\nSELECT"
   }
 ]
