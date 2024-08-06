@@ -1,9 +1,9 @@
 set -e
 
-tables="./data/spider/tables.json"
-dataset_path="./data/spider/dev.json"
-db_dir="database"
-output_dataset_path="predicted_sql.txt"
+tables="./data/bird/tables.json"
+dataset_path="./data/bird/dev.json"
+db_dir="database/bird"
+output_dataset_path="predicted_sql_bird.txt"
 openai_key=`cat openai_key.txt`
 processed_dataset_path="./generate_datasets/C3_dev.json"
 
