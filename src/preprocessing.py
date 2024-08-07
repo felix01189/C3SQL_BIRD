@@ -72,15 +72,17 @@ def get_db_schemas(all_db_infos, opt=None):
         primary_keys, foreign_keys = [], []
         # record primary keys
         for pk_column_idx in db["primary_keys"]:
-            pk_table_name_original = table_names_original[column_names_original[pk_column_idx][0]]
-            pk_column_name_original = column_names_original[pk_column_idx][1]
+            idx_list = ([pk_column_idx] if isinstance(pk_column_idx, int) else pk_column_idx)
+            for idx in idx_list:  
+                pk_table_name_original = table_names_original[column_names_original[idx][0]]
+                pk_column_name_original = column_names_original[idx][1]
 
-            primary_keys.append(
-                {
-                    "table_name_original": pk_table_name_original.lower(),
-                    "column_name_original": pk_column_name_original.lower()
-                }
-            )
+                primary_keys.append(
+                    {
+                        "table_name_original": pk_table_name_original.lower(),
+                        "column_name_original": pk_column_name_original.lower()
+                    }
+                )
 
         db_schemas[db["db_id"]]["pk"] = primary_keys
 
@@ -277,6 +279,7 @@ def isFloat(string):
 
 def main(opt):
     dataset = json.load(open(opt.input_dataset_path))
+
     all_db_infos = json.load(open(opt.table_path))
 
     assert opt.mode in ["train", "eval", "test"]
@@ -293,10 +296,11 @@ def main(opt):
     preprocessed_dataset = []
 
     for natsql_data, data in tqdm(zip(natsql_dataset, dataset)):
-        if data[
-            'query'] == 'SELECT T1.company_name FROM Third_Party_Companies AS T1 JOIN Maintenance_Contracts AS T2 ON T1.company_id  =  T2.maintenance_contract_company_id JOIN Ref_Company_Types AS T3 ON T1.company_type_code  =  T3.company_type_code ORDER BY T2.contract_end_date DESC LIMIT 1':
-            data[
-                'query'] = 'SELECT T1.company_type FROM Third_Party_Companies AS T1 JOIN Maintenance_Contracts AS T2 ON T1.company_id  =  T2.maintenance_contract_company_id ORDER BY T2.contract_end_date DESC LIMIT 1'
+        if "SQL" in data:
+            data['query'] = data.pop('SQL')
+
+        if data['query'] == 'SELECT T1.company_name FROM Third_Party_Companies AS T1 JOIN Maintenance_Contracts AS T2 ON T1.company_id  =  T2.maintenance_contract_company_id JOIN Ref_Company_Types AS T3 ON T1.company_type_code  =  T3.company_type_code ORDER BY T2.contract_end_date DESC LIMIT 1':
+            data['query'] = 'SELECT T1.company_type FROM Third_Party_Companies AS T1 JOIN Maintenance_Contracts AS T2 ON T1.company_id  =  T2.maintenance_contract_company_id ORDER BY T2.contract_end_date DESC LIMIT 1'
             data['query_toks'] = ['SELECT', 'T1.company_type', 'FROM', 'Third_Party_Companies', 'AS', 'T1', 'JOIN',
                                   'Maintenance_Contracts', 'AS', 'T2', 'ON', 'T1.company_id', '=',
                                   'T2.maintenance_contract_company_id', 'ORDER', 'BY', 'T2.contract_end_date',
@@ -320,8 +324,7 @@ def main(opt):
             assert data['query_toks_no_value'][index] == 't2'
             data['query_toks_no_value'][index] = 't3'
 
-        question = data["question"].replace("\u2018", "'").replace("\u2019", "'").replace("\u201c", "'").replace(
-            "\u201d", "'").strip()
+        question = data["question"].replace("\u2018", "'").replace("\u2019", "'").replace("\u201c", "'").replace("\u201d", "'").strip()
         db_id = data["db_id"]
 
         if opt.mode == "test":

@@ -103,7 +103,7 @@ def column_sc(tabs_cols_all, tabs_cols_ori, fk_ori):
             cols_exist = []
             for col in cols:
                 if col.lower() in cols_ori:
-                    cols_exist.append(col)
+                    cols_exist.append(col.lower())
                     if len(cols_exist) == 4:
                         break
             if len(cols_exist) > 0:

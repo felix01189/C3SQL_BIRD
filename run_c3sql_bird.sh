@@ -1,6 +1,6 @@
 set -e
 
-tables="./data/bird/tables.json"
+tables="./data/bird/dev_tables.json"
 dataset_path="./data/bird/dev.json"
 db_dir="database/bird"
 output_dataset_path="predicted_sql_bird.txt"
