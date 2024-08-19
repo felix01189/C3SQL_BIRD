@@ -45,6 +45,12 @@ if __name__ == "__main__":
         
         elif opt.evidence_option == 'option3':
             data['input_sequence'] += '\n#\n### question : ' + data['question'] + '\n#\n### evidence : ' + data['evidence'] + '\nSELECT'
+        
+        elif opt.evidence_option == 'option4':
+            data['input_sequence'] += '\n#\n### question : ' + data['question'] + "\n#\n### The external knowledge necessary for sql generation is given as evidence with a request. " \ 
+                "\n### Evidence is classified into four types: domain knowledge, numerical computation, synonym, and value Illustration. " \ 
+                "\n### Examples of questions and evidence for four categories are as follows. " \ 
+                "\n#\n### evidence : " + data['evidence'] + '\nSELECT'
 
     with open(opt.output_dataset_path, 'w') as f:
         json.dump(data_all, f, indent=2)
