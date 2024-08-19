@@ -1,7 +1,7 @@
 set -e
 
-tables="/datasets/spider/tables.json"
-dataset_path="/datasets/spider/test_data/dev.json"
+tables="/datasets/spider/test_data/tables.json"
+dataset_path="/datasets/spider/test_data/dev_30.json"
 db_dir="/datasets/spider/test_database"
 output_dataset_path="predicted_sql_spider.txt"
 openai_key=`cat openai_key.txt`
