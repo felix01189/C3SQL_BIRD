@@ -14,6 +14,7 @@ def parse_option():
     parser.add_argument("--add_fk", type=bool, default=True)
     parser.add_argument("--output_recalled_columns_path", type=str)
     parser.add_argument("--openai_key", type=str)
+    parser.add_argument("--evidence_option", type=str, default="option1")
 
     opt = parser.parse_args()
 
@@ -136,6 +137,7 @@ def info_generate(tabs_cols, data):
     info = {}
     info['db_id'] = data['db_id']
     info['question'] = data['question']
+    info['evidence'] = data["evidence"] if "evidence" in data else ""
     info['schema'] = tabs_cols
     info['fk'] = data['fk']
     info['db_contents'] = {}
@@ -182,11 +184,21 @@ if __name__ == "__main__":
         prompt = prompt + 'Foreign keys: \n'
         for fk in data['fk']:
             prompt = prompt + '# ' + fk + '\n'
-        prompt += "\nQuestion:\n### " + data["question"]
+        
+        if opt.evidence_option == 'option1':
+            prompt += "Question:\n" + data["question"]
+        
+        elif opt.evidence_option == 'option2':
+            prompt += "Question:\n" + data["question"] + ' ### ' + data['evidence']
+        
+        elif opt.evidence_option == 'option3':
+            prompt += "Question:\n" + data["question"] + '\n\nEvidence:\n' + data['evidence']
+
         # print(prompt)
         tabs_cols_all = None
         while tabs_cols_all is None:
             try:
+                print(prompt)
                 tabs_cols_all = generate_reply([{"role": "user", "content": prompt}], sc_num)
             except:
                 print(f'api error, wait for 3 seconds and retry...')

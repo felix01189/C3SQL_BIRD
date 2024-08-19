@@ -5,6 +5,7 @@ def parse_option():
     parser = argparse.ArgumentParser("command line arguments for generate prompt")
     parser.add_argument("--input_dataset_path", type=str)
     parser.add_argument("--output_dataset_path", type=str)
+    parser.add_argument("--evidence_option", type=str, default="option1")
 
     opt = parser.parse_args()
 
@@ -35,7 +36,16 @@ if __name__ == "__main__":
         data['input_sequence'] += schema[:-1]
         for fk in data['fk']:
             data['input_sequence'] += '\n# ' + fk
-        data['input_sequence'] += '\n#\n### ' + data['question'] + '\nSELECT'
+        
+        if opt.evidence_option == 'option1':
+            data['input_sequence'] += '\n#\n### ' + data['question'] + '\nSELECT'
+        
+        elif opt.evidence_option == 'option2':
+            data['input_sequence'] += '\n#\n### ' + data['question'] + '\n#\n### ' + data['evidence'] + '\nSELECT'
+        
+        elif opt.evidence_option == 'option3':
+            data['input_sequence'] += '\n#\n### question : ' + data['question'] + '\n#\n### evidence : ' + data['evidence'] + '\nSELECT'
+
     with open(opt.output_dataset_path, 'w') as f:
         json.dump(data_all, f, indent=2)
 

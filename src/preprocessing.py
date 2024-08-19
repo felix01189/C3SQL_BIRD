@@ -325,6 +325,7 @@ def main(opt):
             data['query_toks_no_value'][index] = 't3'
 
         question = data["question"].replace("\u2018", "'").replace("\u2019", "'").replace("\u201c", "'").replace("\u201d", "'").strip()
+        evidence = data["evidence"].replace("\u2018", "'").replace("\u2019", "'").replace("\u201c", "'").replace("\u201d", "'").strip() if "evidence" in data else ""
         db_id = data["db_id"]
 
         if opt.mode == "test":
@@ -358,6 +359,7 @@ def main(opt):
 
         preprocessed_data = {}
         preprocessed_data["question"] = question
+        preprocessed_data["evidence"] = evidence
         preprocessed_data["db_id"] = db_id
 
         preprocessed_data["sql"] = sql

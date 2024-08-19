@@ -13,6 +13,7 @@ def parse_option():
                         help="Size of self-consistent set")
     parser.add_argument("--output_recalled_tables_path", type=str)
     parser.add_argument("--openai_key",type=str)
+    parser.add_argument("--evidence_option", type=str, default="option1")
 
     opt = parser.parse_args()
 
@@ -83,6 +84,7 @@ def info_generate(tables, data):
     info = {}
     info['db_id'] = data['db_id']
     info['question'] = data['question']
+    info['evidence'] = data["evidence"] if "evidence" in data else ""
     info['db_schema'] = []
     info['fk'] = []
     for table in tables:
@@ -122,10 +124,20 @@ if __name__ == "__main__":
     for i, data in enumerate(tqdm(data_all)):
         schema = generate_schema(data)
         prompt = instruction + "Schema:\n" + schema + "\n"
-        prompt += "Question:\n" + data["question"]
+        
+        if opt.evidence_option == 'option1':
+            prompt += "Question:\n" + data["question"]
+        
+        elif opt.evidence_option == 'option2':
+            prompt += "Question:\n" + data["question"] + ' ### ' + data['evidence']
+        
+        elif opt.evidence_option == 'option3':
+            prompt += "Question:\n" + data["question"] + '\n\nEvidence:\n' + data['evidence']
+
         tables_all = None
         while tables_all is None:
             try:
+                print(prompt)
                 tables_all = generate_reply([{"role": "user", "content": prompt}], sc_num)
             except:
                 print(f'api error, wait for 3 seconds and retry...')

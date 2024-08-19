@@ -128,6 +128,7 @@ if __name__ == '__main__':
                 messages = chat_prompt.copy()
                 input = item['input_sequence']
                 messages.append({"role": "user", "content": input})
+                print(messages)
                 p_sql = generate_reply(messages, 1)[0]
                 p_sql = 'SELECT ' + p_sql
                 p_sql = p_sql.replace("SELECT SELECT", "SELECT")
@@ -152,6 +153,7 @@ if __name__ == '__main__':
                 messages = chat_prompt.copy()
                 input = item['input_sequence']
                 messages.append({"role": "user", "content": input})
+                print(messages)
                 reply = None
                 while reply is None:
                     try:
